@@ -2,10 +2,18 @@
 
 Метод на C#, который проверяет, является ли строка палиндромом, игнорируя регистр, пробелы и знаки препинания.
 
+## Как запустить
+
+```bash
+git clone https://github.com/def-lt/PalindromeChecker.git
+cd PalindromeChecker
+dotnet run
+```
+
 ## Метод
 
 ```csharp
-public static bool IsPalindrome(string input)
+public static bool IsPalindrome(string? input)
 ```
 
 ### Примеры
@@ -17,18 +25,10 @@ public static bool IsPalindrome(string input)
 | `"Was it a car or a cat I saw?"` | `true` |
 | `"Madam, I'm Adam"` | `true` |
 | `"Hello, World!"` | `false` |
+| `"А роза упала на лапу Азора"` | `true` |
 
-## Как запустить
+## Как работает
 
-```bash
-dotnet new console -n PalindromeDemo
-# скопируйте метод в Program.cs
-dotnet run
-```
-
-Или просто скомпилируйте файл:
-
-```bash
-csc PalindromeChecker.cs
-./PalindromeChecker.exe
-```
+1. Убирает все символы, кроме букв и цифр
+2. Приводит к нижнему регистру
+3. Сравнивает символы с начала и с конца
