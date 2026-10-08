@@ -11,7 +11,6 @@ class Program
         if (string.IsNullOrEmpty(input))
             return true;
 
-        // Оставляем только буквы и цифры, приводим к нижнему регистру
         var cleaned = new StringBuilder();
         foreach (char c in input)
         {
@@ -39,20 +38,39 @@ class Program
 
     static void Main()
     {
-        string[] tests =
-        {
-            "A man, a plan, a canal: Panama",
-            "race a car",
-            "Was it a car or a cat I saw?",
-            "",
-            "Madam, I'm Adam",
-            "Hello, World!",
-            "А роза упала на лапу Азора"
-        };
+        Console.OutputEncoding = Encoding.UTF8;
+        Console.InputEncoding = Encoding.UTF8;
 
-        foreach (var test in tests)
+        Console.WriteLine("=== Проверка палиндрома ===");
+        Console.WriteLine("Введите строку (или 'exit' для выхода):");
+        Console.WriteLine();
+
+        while (true)
         {
-            Console.WriteLine($"\"{test}\"  ->  {IsPalindrome(test)}");
+            Console.Write("> ");
+            string? input = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                Console.WriteLine("Пустая строка. Попробуйте ещё раз.");
+                continue;
+            }
+
+            if (input.Trim().Equals("exit", StringComparison.OrdinalIgnoreCase) ||
+                input.Trim().Equals("выход", StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine("До свидания!");
+                break;
+            }
+
+            bool result = IsPalindrome(input);
+
+            if (result)
+                Console.WriteLine($"✓ \"{input}\" — это палиндром!");
+            else
+                Console.WriteLine($"✗ \"{input}\" — НЕ палиндром.");
+
+            Console.WriteLine();
         }
     }
 }
